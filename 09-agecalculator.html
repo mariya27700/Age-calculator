@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Age Calculator</title>
+        <style>
+    body {
+        font-family: 'Segoe UI', sans-serif;
+        background-color: #fff0f6;
+        text-align: center;
+        padding: 50px;
+        color: #333;
+    }
+
+    h2 {
+        background-color: #ffd6e7;
+        padding: 20px;
+        border-radius: 12px;
+        font-size: 36px;
+        color: #5c005c;
+        margin-bottom: 40px;
+    }
+
+    .inputs {
+        padding: 10px 15px;
+        font-size: 16px;
+        border: 2px solid #ffc0cb;
+        border-radius: 8px;
+        background-color: #fff;
+        margin-bottom: 20px;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 16px;
+        margin: 10px;
+        border: none;
+        border-radius: 8px;
+        background-color: #ff85a2;
+        color: white;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #ff5c8a;
+    }
+
+    p.age {
+        font-size: 20px;
+        color: #660066;
+        margin-top: 30px;
+        font-weight: bold;
+    }
+</style>
+
+    </head>
+    <body>
+        <h2>Age Calculator📅</h2>
+        <input class="inputs" type="date" >
+        <button onclick="calculate();">Calculate age</button>
+        <p class="age"></p>
+
+        <script>
+            let todayDate=new Date();
+            let year=todayDate.getFullYear();
+            
+            function calculate(){
+                let m=document.querySelector(".inputs").value;
+                let dob=new Date(m);
+               
+                let dobYear=dob.getFullYear();
+                 if(dob>todayDate){
+                    document.querySelector(".age").innerHTML="Enter a valid date";
+
+                 }
+                 else if(dob.getMonth()>todayDate.getMonth()){
+                     document.querySelector(".age").innerHTML=`Your age is ${year-dobYear-1} and you will be ${year-dobYear} soon after ${dob.getMonth()-todayDate.getMonth()}month(s) `;
+
+                 }
+                 else if(  dob.getMonth() === todayDate.getMonth() && dob.getDate() - todayDate.getDate() === 1)
+                 {
+                    document.querySelector(".age").innerHTML=`Your age is ${year-dobYear-1}and tommorrow is your birthday.Advance Happy Birthday🎂🎂`;
+                 }
+                 else if( dob.getMonth() === todayDate.getMonth() && dob.getDate() - todayDate.getDate() === 0 ){
+
+                    document.querySelector(".age").innerHTML=` Happy birthday🎉🎉.Your are ${year-dobYear} years old`;
+                 }
+                 else{
+                    
+                    document.querySelector(".age").innerHTML=`Your age is ${year-dobYear}`;
+                 }
+                
+
+            }
+        </script>
+    </body>
+</html>
